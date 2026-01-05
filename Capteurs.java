@@ -3,6 +3,9 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 
+import java.util.Random;
+
+
 public class Capteurs{
 
     private final static String QUEUE_NAME = "capteurs";
@@ -12,8 +15,11 @@ public class Capteurs{
         factory.setHost("localhost");
         Random random = new Random();
 
-       Connection connection = factory.newConnection();
-            Channel channel = connection.createChannel()
+       try(Connection connection = factory.newConnection();
+            Channel channel = connection.createChannel();
+       ){
+
+       
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
             while (true) {
@@ -28,6 +34,9 @@ public class Capteurs{
                 // Pause de 5 secondes
                 Thread.sleep(5000);
             }
+       } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     
