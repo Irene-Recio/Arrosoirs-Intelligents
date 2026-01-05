@@ -18,8 +18,6 @@ public class Capteurs{
        try(Connection connection = factory.newConnection();
             Channel channel = connection.createChannel();
        ){
-
-       
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
             while (true) {
