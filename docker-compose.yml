@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"     # AMQP
+      - "1883:1883"     # MQTT
+      - "15672:15672"   # Web UI
+    command: >
+      bash -c "rabbitmq-plugins enable rabbitmq_mqtt &&
+               rabbitmq-server"
