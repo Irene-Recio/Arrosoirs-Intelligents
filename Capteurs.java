@@ -5,18 +5,29 @@ import com.rabbitmq.client.DeliverCallback;
 
 public class Capteurs{
 
-    private final static String QUEUE_NAME = "temp";
+    private final static String QUEUE_NAME = "capteurs";
 
-    public static void main(String[] argv) throws Exception {
+    public static void main(String[] args) {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
-        try (Connection connection = factory.newConnection();
-             Channel channel = connection.createChannel()) {
+        Random random = new Random();
+
+       Connection connection = factory.newConnection();
+            Channel channel = connection.createChannel()
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-            String temp = "2";
-            channel.basicPublish("logs", "", null, temp.getBytes());
-            System.out.println("Temperature: '" + temp + "'");
-        }
+
+            while (true) {
+                //chiffre random entre 0 et 40
+                int humidite = random.nextInt(40);
+                //int to string pour affichage
+                String message = String.valueOf(humidite);
+                channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+
+                System.out.println("Temperature: " + message);
+
+                // Pause de 5 secondes
+                Thread.sleep(5000);
+            }
     }
 
     
