@@ -3,10 +3,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 
-public class Arrosoirs{
-
-    
-  public static void main(String[] argv) throws Exception {
+public class Capteurs{
 
     private final static String QUEUE_NAME = "temp";
 
@@ -16,12 +13,11 @@ public class Arrosoirs{
         try (Connection connection = factory.newConnection();
              Channel channel = connection.createChannel()) {
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-            int temp = 2;
-            channel.basicPublish("", QUEUE_NAME, null, temp.getBytes());
+            String temp = "2";
+            channel.basicPublish("logs", "", null, temp.getBytes());
             System.out.println("Temperature: '" + temp + "'");
         }
     }
 
-  }
     
 }
