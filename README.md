@@ -1,4 +1,4 @@
 # Arrosoirs-Intelligents
 Projet IoT
 
-Ce projet contient le code pour que si la temperature recçue par le capteur est trés élevées, les arrosoirs s'activent.
+Le but de ce code est d'activer les arrosoirs lorsque la temperature reçue par le capteur du jardin est trés élevées.
