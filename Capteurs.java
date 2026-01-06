@@ -25,9 +25,9 @@ public class Capteurs{
 
             while (true) {
                 //chiffre random entre 0 et 40
-                int humidite = random.nextInt(40);
+                int temperature = random.nextInt(40);
                 //int to string pour affichage
-                String message = String.valueOf(humidite);
+                String message = String.valueOf(temperature);
                 channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
 
                 System.out.println("Temperature: " + message);
