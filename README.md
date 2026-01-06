@@ -1,10 +1,17 @@
 # Arrosoirs-Intelligents
-Projet IoT
+
+**Type**
+Projet IOT
+
+**But**
 
 Le but de ce code est d'activer les arrosoirs lorsque la temperature reçue par le capteur du jardin est trés élevées (>=20).
 
-Commandes:
+  **Prérécquis**
+Avoir docker-compose installé sur sa machine
 
+  **Exécution**
+  Cloner le projet sur sa machine avec git clone https://github.com/Irene-Recio/Arrosoirs-Intelligents.git [git clone](https://github.com/Irene-Recio/Arrosoirs-Intelligents.git)
 docker-compose build
 
 docker-compose up -d
