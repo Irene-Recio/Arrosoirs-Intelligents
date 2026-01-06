@@ -26,15 +26,22 @@ public class Arrosoirs{
             String message = new String(delivery.getBody(), "UTF-8");            
             System.out.println("Arroser: '" + message + "'");
 
+
+            boolean change1 = false;
+            boolean change;
             //2- Si arrosage = true, alors...
               boolean arrosage = Boolean.parseBoolean(message);
               String arrosoirs;
               if (arrosage) {                                       //3- Activer arrosage
+                  change = true;
                   arrosoirs = "Arrosoirs activés";
               } else {
+                  change = false;
                   arrosoirs = "Arrosoirs arrêtés";
               }
-              System.out.println(arrosoirs);
+              if(change =! change1){
+                System.out.println(arrosoirs);
+              }
 
           };
         channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { });
