@@ -24,17 +24,18 @@ public class Arrosoirs{
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
           DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), "UTF-8");            
-            System.out.println(" [x] reçoit: '" + message + "'");
+            System.out.println("Arroser: '" + message + "'");
 
             //2- Si arrosage = true, alors...
               boolean arrosage = Boolean.parseBoolean(message);
-
+              String arrosoirs;
               if (arrosage) {                                       //3- Activer arrosage
-                  System.out.println("Arrosoirs activés");
+                  arrosoirs = "Arrosoirs activés";
               } else {
-                  System.out.println("Arrosoirs arrêtés");
+                  arrosoirs = "Arrosoirs arrêtés";
               }
-            
+              System.out.println(arrosoirs);
+
           };
         channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { });
 

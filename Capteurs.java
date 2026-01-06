@@ -30,7 +30,7 @@ public class Capteurs{
                 String message = String.valueOf(temperature);
                 channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
 
-                System.out.println("Temperature: " + message);
+                System.out.println("Temperature: " + message + " degrés");
 
                 // Pause de 5 secondes
                 Thread.sleep(5000);
