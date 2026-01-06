@@ -23,19 +23,19 @@ public class Arrosoirs{
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
           DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-          String message = new String(delivery.getBody(), "UTF-8");            
-          System.out.println(" [x] reçoit: '" + message + "'");
+            String message = new String(delivery.getBody(), "UTF-8");            
+            System.out.println(" [x] reçoit: '" + message + "'");
 
-          //2- Si booleen = true, alors...
-         boolean arrosage = Boolean.parseBoolean(message);
+            //2- Si arrosage = true, alors...
+              boolean arrosage = Boolean.parseBoolean(message);
 
-            if (arrosage) {                                       //3- Activer arrosage
-                System.out.println("Arrosoirs activés");
-            } else {
-                System.out.println("Arrosoirs arrétés");
-            }
-          
-        };
+              if (arrosage) {                                       //3- Activer arrosage
+                  System.out.println("Arrosoirs activés");
+              } else {
+                  System.out.println("Arrosoirs arrêtés");
+              }
+            
+          };
         channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { });
 
         

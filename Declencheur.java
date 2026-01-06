@@ -11,40 +11,29 @@ public class Declencheur{
     private final static String QUEUE_NAME = "declencheur";
     
     public static void main(String[] argv) throws Exception {
-      //1- Recevoir temperature
-
-        ConnectionFactory factory = new ConnectionFactory();
+      ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         factory.setPort(56720);
         factory.setUsername("guest");
         factory.setPassword("guest");
-        Connection connection = factory.newConnection();
-        Channel channel = connection.createChannel();
 
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
-          DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-          String message = new String(delivery.getBody(), "UTF-8");            
-          System.out.println(" [x] reçcoit: '" + message + "'");
+       try(Connection connection = factory.newConnection();
+            Channel channel = connection.createChannel();
+       ){
+            channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+            boolean activer = false;
+            while (true) {
+                String message = Boolean.toString(activer);
+                channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
 
-          //2- Si..., alors...
-        
-        /*final int temp = Integer.valueOf(message);
-        boolean activer;
-        if(temp >= 20){
-          activer = true;
-        }else{
-            activer = false;
+                System.out.println("Activer: " + message);
+
+                // Pause de 5 secondes
+                Thread.sleep(5000);
+            }
+       } catch (Exception e) {
+            System.out.println(e);
         }
-
-        //3- Publier signal
-        channel.basicPublish("", QUEUE_NAME, null, null);
-        System.out.println(activer);*/
-
-          
-        };
-        channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { });
-
 
   }
     
