@@ -8,15 +8,14 @@ import java.util.Random;
 
 public class Capteurs{
 
-    private final static String QUEUE_NAME = "capteurs";
+    private final static String QUEUE_NAME = "temp";
 
     public static void main(String[] args) {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         factory.setPort(56720);
-        factory.setUsername("admin");
-        factory.setPassword("admin123");
-
+        factory.setUsername("guest");
+        factory.setPassword("guest");
         Random random = new Random();
 
        try(Connection connection = factory.newConnection();
@@ -26,9 +25,9 @@ public class Capteurs{
 
             while (true) {
                 //chiffre random entre 0 et 40
-                int humidite = random.nextInt(40);
+                int temperature = random.nextInt(40);
                 //int to string pour affichage
-                String message = String.valueOf(humidite);
+                String message = String.valueOf(temperature);
                 channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
 
                 System.out.println("Temperature: " + message);
