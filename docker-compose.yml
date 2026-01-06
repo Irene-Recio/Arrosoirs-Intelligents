@@ -1,10 +1,18 @@
+version: "3.9"
+
 services:
   rabbitmq:
-    image: rabbitmq:3-management
+    build: .
+    container_name: rabbitmq
     ports:
-      - "5672:5672"     # AMQP
-      - "1883:1883"     # MQTT
-      - "15672:15672"   # Web UI
-    command: >
-      bash -c "rabbitmq-plugins enable rabbitmq_mqtt &&
-               rabbitmq-server"
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin123
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    restart: unless-stopped
+
+volumes:
+  rabbitmq_data:
