@@ -14,8 +14,8 @@ public class Capteurs{
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         factory.setPort(56720);
-        factory.setUsername("admin");
-        factory.setPassword("admin123");
+        factory.setUsername("guest");
+        factory.setPassword("guest");
 
         Random random = new Random();
 

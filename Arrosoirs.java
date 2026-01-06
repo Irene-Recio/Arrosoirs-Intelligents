@@ -5,6 +5,8 @@ import com.rabbitmq.client.DeliverCallback;
 
 public class Arrosoirs{
 
+    private final static String QUEUE_NAME = "arrosoirs";
+
     
   public static void main(String[] argv) throws Exception {
 
@@ -13,8 +15,8 @@ public class Arrosoirs{
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         factory.setPort(56720);
-        factory.setUsername("admin");
-        factory.setPassword("admin123");
+        factory.setUsername("guest");
+        factory.setPassword("guest");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
@@ -25,12 +27,13 @@ public class Arrosoirs{
           System.out.println(" [x] reçoit: '" + message + "'");
 
           //2- Si booleen = true, alors...
-        
+         boolean arrosage = Boolean.parseBoolean(message);
 
-        //3- Activer arrosage
-        channel.basicPublish("", QUEUE_NAME, null, null);
-        System.out.println("");
-
+            if (arrosage) {                                       //3- Activer arrosage
+                System.out.println("Arrosoirs en fonctionnements");
+            } else {
+                System.out.println("Arrosoirs arrétés");
+            }
           
         };
         channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { });
