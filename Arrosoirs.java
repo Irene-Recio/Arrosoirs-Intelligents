@@ -30,7 +30,7 @@ public class Arrosoirs{
          boolean arrosage = Boolean.parseBoolean(message);
 
             if (arrosage) {                                       //3- Activer arrosage
-                System.out.println("Arrosoirs en fonctionnement");
+                System.out.println("Arrosoirs activés");
             } else {
                 System.out.println("Arrosoirs arrétés");
             }
