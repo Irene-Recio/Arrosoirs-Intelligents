@@ -8,7 +8,7 @@ Projet IOT
 
 Le but de ce projet est d'activer les arrosoirs lorsque la temperature reçue par le capteur du jardin est trés élevées (>=20).
 
-   **Préréquis**
+   **Prérequis**
   
 Avoir docker-compose installé sur sa machine
 
