@@ -15,6 +15,9 @@ public class Declencheur{
 
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
+        factory.setPort(56720);
+        factory.setUsername("admin");
+        factory.setPassword("admin123");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
