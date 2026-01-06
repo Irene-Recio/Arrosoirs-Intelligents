@@ -20,17 +20,13 @@ public class Declencheur{
 
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
-        int temp;
-        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+                DeliverCallback deliverCallback = (consumerTag, delivery) -> {
           String message = new String(delivery.getBody(), "UTF-8");            
           System.out.println(" [x] reçcoit: '" + message + "'");
-          
-        };
-        channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { });
+
+          //2- Si..., alors...
         
-        //2- Si..., alors...
-        
-        temp = Integer.valueOf(message);
+        final int temp = Integer.valueOf(message);
         boolean activer;
         if(temp >= 20){
           activer = true;
@@ -41,6 +37,10 @@ public class Declencheur{
         //3- Publier signal
         channel.basicPublish("", QUEUE_NAME, null, null);
         System.out.println(activer);
+
+          
+        };
+        channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { });
 
 
   }
