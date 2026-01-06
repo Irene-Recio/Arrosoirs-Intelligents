@@ -19,7 +19,9 @@ public class Arrosoirs{
         factory.setPassword("guest");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
-        boolean dernier = null; //dernier message d reçu, sauf que c'est null car il n'y a pas de dernier message la premiere fois
+
+        Boolean dernier = null; //dernier message reçu, sauf que c'est null car il n'y a pas de dernier message la premiere fois
+        
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
           DeliverCallback deliverCallback = (consumerTag, delivery) -> {
@@ -36,9 +38,10 @@ public class Arrosoirs{
                   arrosoirs = "Arrosoirs arrêtés";
               }                
 
-               if(dernier =! null){
-                  if(arrosage =! dernier){
+               if(dernier != null){
+                  if(arrosage != dernier){
                     System.out.println(arrosoirs);
+                    dernier = arrosage;
                   }
                 }
               
