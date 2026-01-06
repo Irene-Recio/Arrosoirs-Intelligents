@@ -1,13 +1,10 @@
-version: "3.9"
-
 services:
   rabbitmq:
-    build: .
-    image: rabbitmq:4.2-management
+    image: rabbitmq:management
     container_name: rabbitmq
     ports:
-      - "5672:5672"
       - "15672:15672"
+      - "56720:5672"
     environment:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: admin123
