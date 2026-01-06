@@ -30,13 +30,16 @@ public class Declencheur{
         //2- Si..., alors...
 
         int temp = Integer.parseInt(message);
-        boolean activer = false;
+        boolean activer;
         if(temp >= 20){
-          activer = true
+          activer = true;
+        }else{
+            activer = false;
         }
 
         //3- Publier signal
-        
+        channel.basicPublish("", QUEUE_NAME, null, null);
+        System.out.println(activer);
 
 
   }
