@@ -13,7 +13,7 @@ Avoir docker-compose installé sur sa machine
 
    **Exécution**
    
-  Cloner le projet sur sa machine avec git clone https://github.com/Irene-Recio/Arrosoirs-Intelligents.git [git clone](https://github.com/Irene-Recio/Arrosoirs-Intelligents.git)
+  Cloner le projet sur sa machine avec git clone https://github.com/Irene-Recio/Arrosoirs-Intelligents.git
 
   Ensuite taper les commandes
   
