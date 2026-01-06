@@ -5,7 +5,7 @@ Projet IOT
 
    **But**
 
-Le but de ce code est d'activer les arrosoirs lorsque la temperature reçue par le capteur du jardin est trés élevées (>=20).
+Le but de ce projet est d'activer les arrosoirs lorsque la temperature reçue par le capteur du jardin est trés élevées (>=20).
 
    **Prérécquis**
   
