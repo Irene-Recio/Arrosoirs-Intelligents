@@ -22,7 +22,7 @@ public class Arrosoirs{
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
           DeliverCallback deliverCallback = (consumerTag, delivery) -> {
           String message = new String(delivery.getBody(), "UTF-8");            
-          System.out.println(" [x] reçcoit: '" + message + "'");
+          System.out.println(" [x] reçoit: '" + message + "'");
 
           //2- Si booleen = true, alors...
         
