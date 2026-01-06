@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Capteurs{
 
-    private final static String QUEUE_NAME = "capteurs";
+    private final static String QUEUE_NAME = "temp";
 
     public static void main(String[] args) {
         ConnectionFactory factory = new ConnectionFactory();

@@ -8,7 +8,9 @@ public class Declencheur{
 //si temp>20 alors
 //publier signal pour arrosoirs
 
-    private final static String QUEUE_NAME = "declencheur";
+    private final static String QUEUE_NAME = "temp";
+    private final static String QUEUE_NAME2 = "arrosoirs";
+
     
     public static void main(String[] argv) throws Exception {
       ConnectionFactory factory = new ConnectionFactory();
@@ -20,11 +22,11 @@ public class Declencheur{
        try(Connection connection = factory.newConnection();
             Channel channel = connection.createChannel();
        ){
-            channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+            channel.queueDeclare(QUEUE_NAME2, false, false, false, null);
             boolean activer = false;
             while (true) {
                 String message = Boolean.toString(activer);
-                channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+                channel.basicPublish("", QUEUE_NAME2, null, message.getBytes());
 
                 System.out.println("Activer: " + message);
 
