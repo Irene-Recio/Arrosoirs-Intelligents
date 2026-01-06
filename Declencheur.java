@@ -20,16 +20,17 @@ public class Declencheur{
 
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
-
+        int temp;
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
           String message = new String(delivery.getBody(), "UTF-8");            
           System.out.println(" [x] reçcoit: '" + message + "'");
+          
         };
         channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { });
-
+        
         //2- Si..., alors...
-
-        int temp = Integer.parseInt(message);
+        
+        temp = Integer.valueOf(message);
         boolean activer;
         if(temp >= 20){
           activer = true;
@@ -46,3 +47,5 @@ public class Declencheur{
     
 }
 
+//Windows:
+//java -cp ".;amqp-client-5.16.0.jar;slf4j-api-1.7.36.jar;slf4j-simple-1.7.36.jar" Declencheur

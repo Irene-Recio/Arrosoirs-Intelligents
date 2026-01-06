@@ -39,3 +39,5 @@ public class Capteurs{
 
     
 }
+//Windows:
+//java -cp ".;amqp-client-5.16.0.jar;slf4j-api-1.7.36.jar;slf4j-simple-1.7.36.jar" Capteurs
