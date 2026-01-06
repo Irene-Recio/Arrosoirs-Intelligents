@@ -32,12 +32,11 @@ public class Declencheur{
         int temp = Integer.parseInt(message);
         boolean activer = false;
         if(temp >= 20){
-        //Publier
           activer = true
         }
 
-        //3- Publier signal arrosoirs
-  
+        //3- Publier signal
+        
 
 
   }
