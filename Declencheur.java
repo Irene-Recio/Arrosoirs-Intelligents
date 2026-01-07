@@ -32,7 +32,7 @@ import com.rabbitmq.client.DeliverCallback;
             String message = new String(delivery.getBody(), "UTF-8");
             int temp = Integer.parseInt(message);
 
-            System.out.println("[x] reçoit: " + temp);
+            System.out.println("Temperature: " + temp + " degrés");
 
             boolean arrosage;
             if(temp >=20){
