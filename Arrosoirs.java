@@ -19,10 +19,9 @@ public class Arrosoirs{
         factory.setPassword("guest");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
-
-        Boolean dernier = null; //dernier message reçu, sauf que c'est null car il n'y a pas de dernier message la premiere fois
         
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
           DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), "UTF-8");            
@@ -30,20 +29,13 @@ public class Arrosoirs{
 
             
             //2- Si arrosage = true, alors...
-              boolean arrosage = Boolean.parseBoolean(message);
-              String arrosoirs;
-              if (arrosage) {   
-                  arrosoirs = "Arrosoirs activés";
-              } else {
-                  arrosoirs = "Arrosoirs arrêtés";
-              }                
+               boolean arrosage = Boolean.parseBoolean(message);
 
-               if(dernier != null){
-                  if(arrosage != dernier){
-                    System.out.println(arrosoirs);
-                    dernier = arrosage;
-                  }
-                }
+              if (arrosage) {                                       //3- Activer arrosage
+                  System.out.println("Arrosoirs activés");
+              } else {
+                  System.out.println("Arrosoirs arrêtés");
+              }
               
 
           };
@@ -55,8 +47,3 @@ public class Arrosoirs{
 
 //Windows:
 //java -cp ".;amqp-client-5.16.0.jar;slf4j-api-1.7.36.jar;slf4j-simple-1.7.36.jar" Arrosoirs
-
-
-//Afficher l'état des arrosoirs que lorsqu'il y a un changement, et pas tout le temps.
-//Idées:
-//    1- Enregistrer le bool du dernier message et comparer avec l'actuelle
